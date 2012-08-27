@@ -165,5 +165,6 @@ let NERDTreeIgnore = ['\.pyc','\.png']
 
 " Syntax for Fora source files.
 au BufRead,BufNewFile *.fora set filetype=fora
-
+au BufRead,BufNewFile *.cppml set filetype=cpp
+au BufRead,BufNewFile *.hppml set filetype=cpp
 
