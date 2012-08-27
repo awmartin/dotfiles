@@ -1,0 +1,16 @@
+
+
+export ARCHFLAGS="-arch x86_64"
+export APACHE="/private/etc/apache2"
+
+export VMAIL_VIM="mvim"
+
+alias ocaml="ledit -x -l 200 -h ~/.ocaml_history ocaml -w Z"
+
+alias showall="defaults write com.apple.finder AppleShowAllFiles TRUE"
+alias hideall="defaults write com.apple.finder AppleShowAllFiles FALSE"
+
+# Application terminal shortcuts.
+alias ia="open $1 -a /Applications/iA\ Writer.app"
+
+

@@ -1,0 +1,106 @@
+#!/usr/bin/env ruby -wKU
+
+# Create a .webloc file for a given URL and include the textual contents for searchability.
+# Usage: bookmark http://urltograb.com/page.html
+
+require 'builder/xchar'
+require 'fileutils'
+
+if ARGV.length < 1
+  exit
+end
+
+
+def extract_text(original_text)
+  text = original_text.dup.gsub("\t", "").gsub("\n", " ")
+
+  content_tags = %w(div table ul li ol body html head a h1 h2 h3 h4 h5 h6 label p span strong em b i title noscript form /form)
+
+  # TODO: get any meaningful attributes as well, like alt="" text from images.
+
+  content_tags.each do |tag|
+    start_pattern = /<#{tag}\b[^>]*>/
+    end_pattern = /<\/#{tag}>/
+  
+    if text.match(start_pattern)
+      text.gsub!(start_pattern, "")
+    end
+    if text.match(end_pattern)
+      text.gsub!(end_pattern, "")
+    end
+  end
+
+  single_tags_to_delete = %w(img meta link !DOCTYPE !doctype br input)
+
+  single_tags_to_delete.each do |tag|
+    pattern = /<#{tag}\b[^>]*>/
+  
+    if text.match(pattern)
+      text.gsub!(pattern, "")
+    end
+  end
+
+  paired_tags_to_delete = %w(script style)
+
+  # .*? = as few as possible
+
+  paired_tags_to_delete.each do |tag|
+    pattern = /<#{tag}\b[^>]*>.*?<\/#{tag}>/
+  
+    if text.match(pattern)
+      text.gsub!(pattern, "")
+    end
+  end
+
+  return text.gsub(/\s+/, " ").gsub("&nbsp;", " ").gsub("<!--", "").gsub("-->", "").gsub("<", "").gsub(">", "").strip
+end
+
+root_folder = "$DOCUMENTS_DIR/Links"
+
+url = ARGV[0]
+folder = root_folder
+if ARGV.length > 1
+  if ARGV[1] != "."
+    folder = File.join(root_folder, ARGV[1])
+  elsif
+    folder = Dir.pwd
+  end
+end
+
+template = '<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL</key>
+	<string>URL_STRING</string>
+	<key>Contents</key>
+	<string>HTML_CONTENTS</string>
+</dict>
+</plist>
+'
+
+contents = `curl #{url}`
+title = contents.match(/<title>(.*?)<\/title>/)[1].to_s.strip rescue nil
+text_contents = extract_text(contents)
+
+webloc_contents = template.sub("URL_STRING", url).sub("HTML_CONTENTS", text_contents.to_xs)
+
+url_without_http = url.sub("http://", "").sub("https://", "")
+domain_only = url_without_http.split("/").first.gsub("/", "-")
+
+if title == "" or title.nil?
+  filename = "#{domain_only}.webloc"
+else
+  filename = "#{title.split('/').first.gsub('/', '-')}.webloc"
+end
+
+puts "Bookmarking as #{filename}"
+
+if not File.exists?(folder)
+  FileUtils.mkdir_p(folder)
+end
+full_path = File.join(folder, filename)
+f = File.open(full_path, "w+")
+f.puts(webloc_contents)
+f.close
+

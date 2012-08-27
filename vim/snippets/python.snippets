@@ -1,0 +1,23 @@
+
+# ---------------------------------------------------------------------------------------------
+# Custom stuff for ComputedGraph and Fora
+
+snippet cgf
+	@ComputedGraph.Function
+snippet cgk
+	${1:key} = ComputedGraph.Key(object, default=None)
+snippet cgm
+	${1:value} = ComputedGraph.Mutable(object, lambda: ${2:None})
+snippet cgl
+	class ${1:Node}(ComputedGraph.Location):
+		"""${2:docstring for $1}"""
+		${3:pass}
+snippet ifs
+	interfaceState = parent.getContext(InterfaceState.InterfaceState)
+snippet ifp
+	${1:value} = InterfaceState.interfaceProperty(default=lambda: ${2:None})
+snippet impyui
+	import bsa.python_ui.${1:elements}.${2:Module} as ${3:$2}
+snippet imts
+	import bsa.tsunami.${1:Common}.${2:Module} as ${3:$2}
+

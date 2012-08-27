@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby -wKU
+
+require 'fileutils'
+
+idea_folder = "/Users/awmartin/Dropbox/Ideas"
+idea_title = ARGV[0]
+idea_description = ARGV.length > 1 ? ARGV[1] : ""
+idea_category = ARGV.length > 2 ? ARGV[2] : ""
+
+#file_name = idea_title.gsub(" ", "-") + ".md"
+file_name = idea_title.split(" ").collect {|s| s.capitalize}.join(" ") + ".md"
+
+category_path = File.join(idea_folder, idea_category)
+if not File.exists?(category_path)
+  FileUtils.mkdir_p(category_path)
+end
+
+file_path = File.join(category_path, file_name)
+
+f = File.open(file_path, "w+")
+f.puts(idea_description)
+f.close

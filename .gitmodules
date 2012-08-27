@@ -1,0 +1,49 @@
+[submodule "oh-my-zsh"]
+    path = oh-my-zsh
+    url = git://github.com/sjl/oh-my-zsh.git
+[submodule "vim/bundle/ctrlp"]
+    path = vim/bundle/ctrlp
+    url = git://github.com/kien/ctrlp.vim.git
+[submodule "vim/bundle/fugitive"]
+    path = vim/bundle/fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/haml"]
+    path = vim/bundle/haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule "vim/bundle/markdown"]
+    path = vim/bundle/markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule "vim/bundle/nerdcommenter"]
+    path = vim/bundle/nerdcommenter
+    url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/bundle/nerdtree"]
+    path = vim/bundle/nerdtree
+    url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/omlet"]
+    path = vim/bundle/omlet
+	url = git://github.com/vim-scripts/omlet.vim.git
+[submodule "vim/bundle/solarized"]
+    path = vim/bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/surround"]
+    path = vim/bundle/surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/syntastic"]
+    path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "vim/bundle/tagbar"]
+    path = vim/bundle/tagbar
+    url = git://github.com/majutsushi/tagbar.git
+
+[submodule "vim/bundle/snipmate"]
+	path = vim/bundle/snipmate
+	url = git://github.com/garbas/vim-snipmate.git
+[submodule "vim/bundle/tlib"]
+	path = vim/bundle/tlib
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "vim/bundle/mw-utils"]
+	path = vim/bundle/mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim/bundle/snipmate-snippets"]
+	path = vim/bundle/snipmate-snippets
+	url = https://github.com/honza/snipmate-snippets.git

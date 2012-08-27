@@ -1,0 +1,26 @@
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore_global
+[color]
+    ui = auto
+[github]
+    user = awmartin
+[difftool "sourcetree"]
+    cmd = /Applications/Kaleidoscope.app/Contents/MacOS/ksdiff -w \"$LOCAL\" \"$REMOTE\"
+    path = 
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.localized/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+[difftool "Kaleidoscope"]
+    cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+    prompt = false
+[diff]
+    tool = Kaleidoscope
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%Creset - %s %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    co = checkout
+    cm = commit
+    A = add -A
+    br = branch
+
