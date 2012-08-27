@@ -1,3 +1,4 @@
+#!/bin/bash
 
 dotfiles_dir=$HOME/dotfiles
 
@@ -52,4 +53,9 @@ for file in $files; do
         write $file
     fi
 done
+
+cd $dotfiles_dir
+git submodule init
+git submodule update
+cd -
 
