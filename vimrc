@@ -66,7 +66,7 @@ set linebreak
 set nolist
 
 " Files to ignore (ctrl-p, CommandT, etc.)
-set wildignore+=*.pyc,*.png,*.o
+set wildignore+=*.pyc,*.png,*.o,.build*
 
 " ------------------------------------------------------------------
 " KEYBOARD
