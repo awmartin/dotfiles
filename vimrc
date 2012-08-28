@@ -171,3 +171,16 @@ au BufRead,BufNewFile *.hppml set filetype=cpp
 " Set Ruby tabs to 2 spaces.
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
+" Remove trailing whitespace from only particular file types
+" Modified from http://vim.wikia.com/wiki/Remove_unwanted_spaces
+" NOTE: In Markdown and vimrc, trailing whitespace matters.
+function TrimTrailingWhiteSpace()
+    %s/\s\+$//
+    ''
+:endfunction
+let filetypes = [ "c", "cpp", "python", "ruby" ]
+autocmd FileWritePre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
+autocmd FileAppendPre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
+autocmd FilterWritePre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
+autocmd BufWritePre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
+
