@@ -98,4 +98,7 @@ alias listports="sudo lsof -i -P | grep -i \"listen\""
 alias heroc="ruby $HOME/bin/heroku-credentials.rb"
 alias heros="ruby $HOME/bin/heroku-switcher.rb"
 
+# Fixes a problem with hat notation in git from zsh, e.g. git reset HEAD^
+# This passes the bad match onto the command.
+unsetopt nomatch
 

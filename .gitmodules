@@ -28,13 +28,9 @@
 [submodule "vim/bundle/surround"]
     path = vim/bundle/surround
 	url = git://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/syntastic"]
-    path = vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule "vim/bundle/tagbar"]
     path = vim/bundle/tagbar
     url = git://github.com/majutsushi/tagbar.git
-
 [submodule "vim/bundle/snipmate"]
 	path = vim/bundle/snipmate
 	url = git://github.com/garbas/vim-snipmate.git

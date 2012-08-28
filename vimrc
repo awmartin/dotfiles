@@ -140,17 +140,9 @@ set list
 
 
 " ------------------------------------------------------------------
-" Syntastic Plugin
+" Python-Mode plugin settings
 
-" Include syntastic feedback in the statusline.
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" Show the syntastic error location list by default on write when errors are
-" present. Close when no errors are detected. See doc/syntastic.txt.
-let g:syntastic_auto_loc_list=1
+let g:pymode_lint_checker = "pyflakes,mccabe"
 
 
 " ------------------------------------------------------------------
@@ -171,16 +163,4 @@ au BufRead,BufNewFile *.hppml set filetype=cpp
 " Set Ruby tabs to 2 spaces.
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
-" Remove trailing whitespace from only particular file types
-" Modified from http://vim.wikia.com/wiki/Remove_unwanted_spaces
-" NOTE: In Markdown and vimrc, trailing whitespace matters.
-function TrimTrailingWhiteSpace()
-    %s/\s\+$//
-    ''
-:endfunction
-let filetypes = [ "c", "cpp", "python", "ruby" ]
-autocmd FileWritePre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
-autocmd FileAppendPre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
-autocmd FilterWritePre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
-autocmd BufWritePre * if index(filetypes, &ft) >= 0 | :call TrimTrailingWhiteSpace()
 
