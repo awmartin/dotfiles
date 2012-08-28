@@ -2,7 +2,7 @@
 
 require 'fileutils'
 
-idea_folder = "/Users/awmartin/Dropbox/Ideas"
+idea_folder = "#{ENV['DOCUMENTS_DIR']}/Ideas"
 idea_title = ARGV[0]
 idea_description = ARGV.length > 1 ? ARGV[1] : ""
 idea_category = ARGV.length > 2 ? ARGV[2] : ""

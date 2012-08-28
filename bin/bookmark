@@ -55,7 +55,7 @@ def extract_text(original_text)
   return text.gsub(/\s+/, " ").gsub("&nbsp;", " ").gsub("<!--", "").gsub("-->", "").gsub("<", "").gsub(">", "").strip
 end
 
-root_folder = "$DOCUMENTS_DIR/Links"
+root_folder = "#{ENV['DOCUMENTS_DIR']}/Links"
 
 url = ARGV[0]
 folder = root_folder
