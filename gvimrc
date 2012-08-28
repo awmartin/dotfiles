@@ -1,5 +1,10 @@
+" This in combination with 'set visualbell' ensures that there are no beeps or
+" flashes when errors occur.
 set vb t_vb=
+
+" No right scrollbar
 set guioptions-=r
+" No toolbar
 set guioptions-=T
 
 if has("unix")
