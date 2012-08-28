@@ -168,3 +168,6 @@ au BufRead,BufNewFile *.fora set filetype=fora
 au BufRead,BufNewFile *.cppml set filetype=cpp
 au BufRead,BufNewFile *.hppml set filetype=cpp
 
+" Set Ruby tabs to 2 spaces.
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+
