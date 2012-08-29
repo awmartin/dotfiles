@@ -60,6 +60,8 @@ set number
 
 " Set the column indicator to 100 characters wide
 set colorcolumn=100
+" Wrap at 100 characters.
+set textwidth=100
 
 set wrap
 set linebreak

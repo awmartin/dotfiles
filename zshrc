@@ -100,5 +100,6 @@ alias heros="ruby $HOME/bin/heroku-switcher.rb"
 
 # Fixes a problem with hat notation in git from zsh, e.g. git reset HEAD^
 # This passes the bad match onto the command.
+# http://github.com/robbyrussell/oh-my-zsh/issues/449
 unsetopt nomatch
 

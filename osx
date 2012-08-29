@@ -13,4 +13,5 @@ alias hideall="defaults write com.apple.finder AppleShowAllFiles FALSE"
 # Application terminal shortcuts.
 alias ia="open $1 -a /Applications/iA\ Writer.app"
 
+alias gvim="mvim"
 
