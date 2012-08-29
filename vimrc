@@ -55,17 +55,7 @@ set visualbell
 " Unfold all folds by default.
 set foldlevel=99
 
-" Show line numbers
-set number
 
-" Set the column indicator to 100 characters wide
-set colorcolumn=100
-" Wrap at 100 characters.
-set textwidth=100
-
-set wrap
-set linebreak
-set nolist
 
 " Files to ignore (ctrl-p, CommandT, etc.)
 set wildignore+=*.pyc,*.png,*.o,.build*
@@ -146,6 +136,17 @@ set list
 
 let g:pymode_lint_checker = "pyflakes,mccabe"
 
+" Override some of the default format, text wrapping, etc.
+let g:pymode_options_other = 0
+set complete+=t
+set formatoptions-=t
+" Set the column indicator to 100 characters wide
+set colorcolumn=100
+" Wrap at 100 characters.
+set textwidth=100
+" Show line numbers
+set number
+set nowrap
 
 " ------------------------------------------------------------------
 " NERDTree Plugin
