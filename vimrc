@@ -16,7 +16,7 @@ syntax on
 " Automatically indent with braces, etc.
 set smartindent
 
-" Tabs are 4 spaces.
+" By default, set tabs to 4 spaces.
 set shiftwidth=4
 set tabstop=4
 set expandtab
@@ -127,7 +127,7 @@ else
 endif
 
 " Show whitespace characters, end of line, trailine space, etc.
-set listchars=eol:¶,tab:⌐­,trail:~,extends:>,precedes:<
+set listchars=eol:¶,tab:⌐ ,trail:~,extends:>,precedes:<
 set list
 
 
