@@ -15,3 +15,5 @@ alias ia="open $1 -a /Applications/iA\ Writer.app"
 
 alias gvim="mvim"
 
+alias js="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
+
