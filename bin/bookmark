@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -wKU
 
 # Create a .webloc file for a given URL and include the textual contents for searchability.
-# Usage: bookmark http://urltograb.com/page.html
+# Usage: bookmark http://urltograb.com/page.html [Folder] [Title]
 
 require 'builder/xchar'
 require 'fileutils'
@@ -55,6 +55,36 @@ def extract_text(original_text)
   return text.gsub(/\s+/, " ").gsub("&nbsp;", " ").gsub("<!--", "").gsub("-->", "").gsub("<", "").gsub(">", "").strip
 end
 
+webloc_extension = "webloc"
+webloc_template = '<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>URL</key>
+	<string>URL_STRING</string>
+	<key>Contents</key>
+	<string>HTML_CONTENTS</string>
+</dict>
+</plist>
+'
+
+html_extension = "html"
+html_template = '<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>URL_STRING</title>
+	<meta http-equiv="refresh" content="0;url=URL_STRING"></head>
+	<body>
+    <a href="URL_STRING">URL_STRING</a>
+    <div>HTML_CONTENTS</div>
+  </body>
+</html>
+'
+
+target_extension = html_extension
+target_template = html_template
+
 root_folder = "#{ENV['DOCUMENTS_DIR']}/Links"
 
 url = ARGV[0]
@@ -67,31 +97,24 @@ if ARGV.length > 1
   end
 end
 
-template = '<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>URL</key>
-	<string>URL_STRING</string>
-	<key>Contents</key>
-	<string>HTML_CONTENTS</string>
-</dict>
-</plist>
-'
-
 contents = `curl #{url}`
-title = contents.match(/<title>(.*?)<\/title>/)[1].to_s.strip rescue nil
-text_contents = extract_text(contents)
 
-webloc_contents = template.sub("URL_STRING", url).sub("HTML_CONTENTS", text_contents.to_xs)
+if ARGV.length > 2
+  title = ARGV[2]
+else
+  title = contents.match(/<title>(.*)<\/title>/)[1].to_s.strip rescue nil
+end
+
+text_contents = extract_text(contents)
+target_contents = target_template.gsub("URL_STRING", url).sub("HTML_CONTENTS", text_contents.to_xs)
 
 url_without_http = url.sub("http://", "").sub("https://", "")
 domain_only = url_without_http.split("/").first.gsub("/", "-")
 
 if title == "" or title.nil?
-  filename = "#{domain_only}.webloc"
+  filename = "#{domain_only}.#{target_extension}"
 else
-  filename = "#{title.split('/').first.gsub('/', '-')}.webloc"
+  filename = "#{title.split('/').first.gsub('/', '-')}.#{target_extension}"
 end
 
 puts "Bookmarking as #{filename}"
@@ -101,6 +124,6 @@ if not File.exists?(folder)
 end
 full_path = File.join(folder, filename)
 f = File.open(full_path, "w+")
-f.puts(webloc_contents)
+f.puts(target_contents)
 f.close
 
