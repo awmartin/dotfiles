@@ -103,3 +103,7 @@ alias heros="ruby $HOME/bin/heroku-switcher.rb"
 # http://github.com/robbyrussell/oh-my-zsh/issues/449
 unsetopt nomatch
 
+# HACK: Keeps a strange error from appearing when launching gvim.
+# https://bugs.launchpad.net/ubuntu/+source/vim/+bug/776499
+export UBUNTU_MENUPROXY=0
+
