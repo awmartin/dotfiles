@@ -1,9 +1,6 @@
 " Sets Vi compatibility to off. Put the first!
 set nocompatible
 
-" Let Pathogen do its thing and load its plugins.
-call pathogen#infect()
-
 " Enable loading the plugin files for specific file types
 filetype plugin on
 
@@ -55,10 +52,16 @@ set visualbell
 " Unfold all folds by default.
 set foldlevel=99
 
-
-
 " Files to ignore (ctrl-p, CommandT, etc.)
-set wildignore+=*.pyc,*.png,*.o,.build*
+set wildignore+=*.pyc,*.png,*.o,.build*,.waf*,.git*
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\.git$\|\.waf$\|\.build$',
+    \ 'file': '\.pyc$\.\|\.png\|\.o$'
+    \ }
+
+" Let Pathogen do its thing and load its plugins.
+call pathogen#infect()
 
 " ------------------------------------------------------------------
 " KEYBOARD
