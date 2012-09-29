@@ -52,3 +52,6 @@
 [submodule "vim/bundle/yaifa"]
 	path = vim/bundle/yaifa
 	url = git://github.com/vim-scripts/yaifa.vim.git
+[submodule "vim/bundle/delimitmate"]
+	path = vim/bundle/delimitmate
+	url = git://github.com/Raimondi/delimitMate.git
