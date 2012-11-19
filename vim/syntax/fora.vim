@@ -45,14 +45,14 @@ syn keyword foraType		JOV Dictionary Vector Anything AnyConstant AnyMutable Clas
 syn keyword foraStatement	return yield
 syn keyword foraBoolean		true false
 syn keyword foraNull		nothing
-syn keyword foraIdentifier	self let base object
-syn keyword foraLabel		match with
+syn keyword foraIdentifier	self let base object class member
+syn keyword foraLabel		match with filter operator
 syn keyword foraException	try catch throw
 "syn keyword foraMessage		
 "syn keyword foraGlobal		
 "syn keyword foraMember		
 "syn keyword foraDeprecated	
-syn keyword foraReserved	pull operator near split skip over of
+syn keyword foraReserved	pull near split skip over of
 
 syn match  foraSymbol		"[]})\"'`]\@<!`\%(\^\|\~\|<<\|<=>\|<=\|<\|===\|==\|=\~\|>>\|>=\|>\||\|-@\|-\|/\|\[]=\|\[]\|\*\*\|\*\|&\|%\|+@\|+\|`\)"
 syn match  foraSymbol		"[]})\"'`]\@<!`\$\%(-.\|[`~<=>_,;:!?/.'"@$*\&+0]\)"
