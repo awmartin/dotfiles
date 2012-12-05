@@ -100,6 +100,8 @@ nnoremap <C-l> <C-w><C-l>
 " needed.
 nnoremap <C-w><C-e> <C-W>b<C-w>J
 
+" For Buffet plugin
+nnoremap <Leader>b :Bufferlist<CR>
 
 " ------------------------------------------------------------------
 " GUI-RELATED

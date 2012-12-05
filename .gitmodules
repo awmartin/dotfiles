@@ -52,3 +52,6 @@
 [submodule "vim/bundle/delimitmate"]
 	path = vim/bundle/delimitmate
 	url = git://github.com/Raimondi/delimitMate.git
+[submodule "vim/bundle/buffet"]
+	path = vim/bundle/buffet
+	url = git://github.com/sandeepcr529/Buffet.vim.git
