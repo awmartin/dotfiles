@@ -116,15 +116,11 @@ if has("gui_running")
     autocmd VimEnter * TagbarOpen
 endif
 
-if has("gui_running")
-    set background=dark
-    " Render whitespace characters subtly.
-    let g:solarized_visibility = "low"
-    " Set the options before setting the color scheme.
-    colorscheme solarized
-else
-    colorscheme desert-awm
-endif
+set background=dark
+" Render whitespace characters subtly.
+let g:solarized_visibility = "low"
+" Set the options before setting the color scheme.
+colorscheme solarized
 
 " Show whitespace characters, end of line, trailine space, etc.
 set listchars=eol:¶,tab:⌐ ,trail:~,extends:>,precedes:<
@@ -166,4 +162,7 @@ au BufRead,BufNewFile *.hppml set filetype=cpp
 " Set Ruby tabs to 2 spaces.
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
+" Changes cursor shape in iTerm2.
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
