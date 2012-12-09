@@ -100,8 +100,12 @@ nnoremap <C-l> <C-w><C-l>
 " needed.
 nnoremap <C-w><C-e> <C-W>b<C-w>J
 
+let mapleader = ','
+
 " For Buffet plugin
-nnoremap <Leader>b :Bufferlist<CR>
+nnoremap <leader>m :Bufferlist<CR>
+" Choose a different leader key for python-mode plugin.
+let g:pymode_breakpoint_key = '<leader>bp'
 
 " ------------------------------------------------------------------
 " GUI-RELATED
@@ -168,4 +172,11 @@ au BufRead,BufNewFile *.hppml set filetype=cpp
 " Set Ruby tabs to 2 spaces.
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
+
+" ------------------------------------------------------------------
+" delimitMate plugin settings
+
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+au Filetype fora let b:delimitMate_quotes = "\" '"
+au FileType fora let b:delimitMate_nesting_quotes = ['"']
 
