@@ -17,3 +17,5 @@ alias gvim="mvim"
 
 alias js="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
 
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+
