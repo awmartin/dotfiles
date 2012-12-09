@@ -4,6 +4,9 @@
 
 snippet cgf
 	@ComputedGraph.Function
+	def ${1:name}(self, ${2:*args}):
+		"""${3:docstring for $1}"""
+		${4:pass}
 snippet cgk
 	${1:key} = ComputedGraph.Key(object, default=None)
 snippet cgm

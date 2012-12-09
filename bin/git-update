@@ -1,0 +1,95 @@
+#!/bin/sh
+
+# This is a git utility for updating a read-only branch in place.
+
+REMOTE="origin"
+
+CURRENT_BRANCH=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+
+update_other () {
+    BRANCH_TO_UPDATE=$1
+
+    echo "Attempting to update branch $BRANCH_TO_UPDATE"
+
+    CURRENT_REF="refs/heads/$BRANCH_TO_UPDATE"
+    CURRENT_REVISION=$(git rev-parse $BRANCH_TO_UPDATE)
+
+    # Retrieve changes from origin
+    echo "Fetching changes from origin..."
+    git fetch origin
+
+    # Get the new ref for origin/branchname
+    NEW_REVISION=$(git rev-parse origin/$BRANCH_TO_UPDATE)
+
+    if [ "$NEW_REVISION" = "$CURRENT_REVISION" ]
+    then
+        echo "The current revision equals the remote revision No update required."
+        exit 0
+    fi
+
+    echo "Updating the branch target for $1"
+    git update-ref $CURRENT_REF $NEW_REVISION
+}
+
+update_in_place () {
+    echo "Updating the current branch in place."
+
+    CURRENT_REF=$(git symbolic-ref HEAD)
+    CURRENT_REVISION=$(git rev-parse HEAD)
+
+    if [ "$CURRENT_BRANCH" = "HEAD" ]
+    then
+        # HEADLESS, so we don't really have a branch to update.
+        echo "No branch to update. This utility is intended to update the target of a read-only branch."
+        echo "Either switch to a branch to update, or pass the name in as an argument: git update master"
+        exit 0
+    fi
+
+    # Retrieve changes from origin
+    echo "Fetching changes from origin..."
+    git fetch origin
+
+    # Get the new ref for origin/branchname
+    NEW_REVISION=$(git rev-parse origin/$CURRENT_BRANCH)
+
+    if [ "$NEW_REVISION" = "$CURRENT_REVISION" ]
+    then
+        echo "The current revision equals the remote revision No update required."
+        exit 0
+    fi
+
+    echo "Temporarily switching off the branch."
+    git checkout $CURRENT_REVISION
+
+    echo "Updating the branch target."
+    git update-ref $CURRENT_REF $NEW_REVISION
+
+    echo "Setting HEAD back to the branch."
+    git checkout $CURRENT_BRANCH
+}
+
+
+if [ ! -n "$1" ]
+then
+    # No arguments, assume the user is updating a checked-out branch.
+    update_in_place
+
+else
+
+    BRANCH_TO_UPDATE=$1
+
+    if [ "$BRANCH_TO_UPDATE" = "$CURRENT_BRANCH" ]
+    then
+        # If the user has passed in an argument the repo is on that branch, we still want to do the
+        # checkout/switch stuff in place.
+        update_in_place
+    else
+        # Otherwise, update the branch without checking out, just move the ref.
+        update_other $BRANCH_TO_UPDATE
+    fi
+
+fi
+
+
+exit 0
+

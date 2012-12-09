@@ -100,6 +100,12 @@ nnoremap <C-l> <C-w><C-l>
 " needed.
 nnoremap <C-w><C-e> <C-W>b<C-w>J
 
+let mapleader = ','
+
+" For Buffet plugin
+nnoremap <leader>m :Bufferlist<CR>
+" Choose a different leader key for python-mode plugin.
+let g:pymode_breakpoint_key = '<leader>bp'
 
 " ------------------------------------------------------------------
 " GUI-RELATED
@@ -165,4 +171,11 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 " Changes cursor shape in iTerm2.
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" ------------------------------------------------------------------
+" delimitMate plugin settings
+
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+au Filetype fora let b:delimitMate_quotes = "\" '"
+au FileType fora let b:delimitMate_nesting_quotes = ['"']
 
