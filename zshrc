@@ -41,9 +41,9 @@ export WREN="$HOME/projects/wren"
 export FORA="$HOME/projects/fora/src"
 
 export PYTHONPATH="$FORA:$PYTHONPATH"
-export FORAPATH="$FORA/../fora_playground"
+export FORAPATH="$FORA/../playground"
 
-for dir in "$HOME/bin" /usr/local/bin /usr/texbin "$HOME/local/godi/bin" "$HOME/local/godi/sbin"; do
+for dir in "$HOME/local" "$HOME/bin" /usr/local/bin /usr/texbin "$HOME/local/godi/bin" "$HOME/local/godi/sbin"; do
     if [ -d "$dir" ]; then
         #case "$PATH" in
         #    *"$dir"*) ;;
@@ -106,4 +106,6 @@ unsetopt nomatch
 # HACK: Keeps a strange error from appearing when launching gvim.
 # https://bugs.launchpad.net/ubuntu/+source/vim/+bug/776499
 export UBUNTU_MENUPROXY=0
+
+alias tmux="TERM=screen-256color-bce tmux"
 
