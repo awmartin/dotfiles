@@ -39,13 +39,13 @@ syn region  foraRegexpString     start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gi
 
 syn keyword foraConditional	if else switch if_split
 syn keyword foraRepeat		while for
-syn keyword foraBranch		break skip next cached
+syn keyword foraBranch		break next cached
 syn keyword foraOperator	and or in is
-syn keyword foraType		JOV Dictionary Vector Anything AnyConstant AnyMutable Class Tuple Integer Float PythonObject Nothing String Symbol Tag Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 DateTime TimeDuration
+syn keyword foraType		JOV Dictionary MutableVector Vector Anything AnyConstant AnyMutable Class Tuple Integer Float PythonObject Nothing String Symbol Tag Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 DateTime TimeDuration
 syn keyword foraStatement	return yield
 syn keyword foraBoolean		true false
 syn keyword foraNull		nothing
-syn keyword foraIdentifier	self let base object class member
+syn keyword foraIdentifier	self let object class member static mixin
 syn keyword foraLabel		match with filter operator
 syn keyword foraException	try catch throw
 "syn keyword foraMessage		
