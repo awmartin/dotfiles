@@ -43,7 +43,24 @@ export FORA="$HOME/projects/fora/src"
 export PYTHONPATH="$FORA:$PYTHONPATH"
 export FORAPATH="$FORA/../playground"
 
-for dir in "$HOME/local" "$HOME/bin" /usr/local/bin /usr/texbin "$HOME/local/godi/bin" "$HOME/local/godi/sbin"; do
+# Local package overrides
+if [ -d "$HOME/local" ]; then
+    local_packages=`ls -d -- ~/local/*`
+
+    for dir in $local_packages; do
+        bin_dir="$dir/bin"
+        sbin_dir="$dir/sbin"
+        if [ -d "$bin_dir" ]; then
+            PATH="$bin_dir:$PATH"
+        fi
+        if [ -d "$sbin_dir" ]; then
+            PATH="$sbin_dir:$PATH"
+        fi
+    done
+fi
+
+# High priority PATH
+for dir in "$HOME/bin" "/usr/local/bin" "/usr/texbin"; do
     if [ -d "$dir" ]; then
         #case "$PATH" in
         #    *"$dir"*) ;;
@@ -53,7 +70,7 @@ for dir in "$HOME/local" "$HOME/bin" /usr/local/bin /usr/texbin "$HOME/local/god
     fi
 done
 
-# Lower priority PATH
+# Low priority PATH
 for dir in "$HOME/.rvm/bin" "$WREN/bin" "$FORA/bsa/scripts" "/usr/lib/llvm-2.7/bin" "$HOME/packages/depot_tools"; do
     if [ -d "$dir" ]; then
         case "$PATH" in
