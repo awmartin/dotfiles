@@ -204,4 +204,13 @@ if has("autocmd")
 endif
 
 
+" ------------------------------------------------------------------
+" easymotion plugin settings
+
+let g:EasyMotion_keys = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+" ------------------------------------------------------------------
+" Ctrl-P plugin settings
+
+let g:ctrlp_by_filename = 1
 
