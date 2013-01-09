@@ -45,18 +45,21 @@ export FORAPATH="$FORA/../playground"
 
 # Local package overrides
 if [ -d "$HOME/local" ]; then
+    setopt sh_word_split
     local_packages=`ls -d -- ~/local/*`
 
-    for dir in $local_packages; do
-        bin_dir="$dir/bin"
-        sbin_dir="$dir/sbin"
+    for local_dir in $local_packages; do
+        bin_dir="$local_dir/bin"
         if [ -d "$bin_dir" ]; then
             PATH="$bin_dir:$PATH"
         fi
+
+        sbin_dir="$local_dir/sbin"
         if [ -d "$sbin_dir" ]; then
             PATH="$sbin_dir:$PATH"
         fi
     done
+    unsetopt sh_word_split
 fi
 
 # High priority PATH
