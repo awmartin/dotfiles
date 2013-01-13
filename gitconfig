@@ -23,4 +23,5 @@
     cm = commit
     A = add -A
     br = branch
+    st = status
 

@@ -13,8 +13,8 @@ filetype indent on
 " Enable syntax highlighting.
 syntax on
 
-" Automatically indent with braces, etc.
-set smartindent
+" Indent based on the previous line only, and don't interfere with filetype-based indents.
+set autoindent
 
 " By default, set tabs to 4 spaces.
 set shiftwidth=4
@@ -55,7 +55,8 @@ set visualbell
 " Unfold all folds by default.
 set foldlevel=99
 
-
+" Ignore whitespace in vimdiff (and fugitive's Gdiff)
+set diffopt+=iwhite
 
 " Files to ignore (ctrl-p, CommandT, etc.)
 set wildignore+=*.pyc,*.png,*.o,.build*
@@ -114,6 +115,11 @@ inoremap <C-A-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-A-j> :m '>+1<CR>gv=gv
 vnoremap <C-A-k> :m '<-2<CR>gv=gv
 
+" Attempt to map <leader>cv to the uncomment command in NERDCommenter.
+" Makes commenting and uncommenting process easier with ,cb and ,cv.
+map <leader>cv <plug>NERDCommenterUncomment
+
+
 " ------------------------------------------------------------------
 " GUI-RELATED
 
@@ -132,8 +138,11 @@ endif
 set background=dark
 " Render whitespace characters subtly.
 let g:solarized_visibility = "low"
+let g:solarized_termtrans = 1
+let g:solarized_termcolors = 16
 " Set the options before setting the color scheme.
 colorscheme solarized
+
 
 " Show whitespace characters, end of line, trailine space, etc.
 set listchars=eol:¶,tab:⌐ ,trail:~,extends:>,precedes:<
@@ -147,8 +156,12 @@ let g:pymode_lint_checker = "pyflakes,mccabe"
 
 " Override some of the default format, text wrapping, etc.
 let g:pymode_options_other = 0
+
+" ------------------------------------------------------------------
+"
 set complete+=t
 set formatoptions-=t
+
 " Set the column indicator to 100 characters wide
 set colorcolumn=100
 " Wrap at 100 characters.
@@ -156,6 +169,9 @@ set textwidth=100
 " Show line numbers
 set number
 set nowrap
+" Set the width of the line numbers column to 5 characters to handle the switching betwee
+" relative and absolute line numbering smoothly.
+set nuw=5
 
 " ------------------------------------------------------------------
 " NERDTree Plugin
@@ -186,4 +202,23 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 au Filetype fora let b:delimitMate_quotes = "\" '"
 au FileType fora let b:delimitMate_nesting_quotes = ['"']
+
+" Handling the cursor in the terminal on linux.
+if has("autocmd")
+  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+endif
+
+
+" ------------------------------------------------------------------
+" easymotion plugin settings
+
+let g:EasyMotion_keys = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+" ------------------------------------------------------------------
+" Ctrl-P plugin settings
+
+let g:ctrlp_by_filename = 1
 

@@ -41,9 +41,29 @@ export WREN="$HOME/projects/wren"
 export FORA="$HOME/projects/fora/src"
 
 export PYTHONPATH="$FORA:$PYTHONPATH"
-export FORAPATH="$FORA/../fora_playground"
+export FORAPATH="$FORA/../playground"
 
-for dir in "$HOME/bin" /usr/local/bin /usr/local/share/python /usr/texbin "$HOME/local/godi/bin" "$HOME/local/godi/sbin"; do
+# Local package overrides
+if [ -d "$HOME/local" ]; then
+    setopt sh_word_split
+    local_packages=`ls -d -- ~/local/*`
+
+    for local_dir in $local_packages; do
+        bin_dir="$local_dir/bin"
+        if [ -d "$bin_dir" ]; then
+            PATH="$bin_dir:$PATH"
+        fi
+
+        sbin_dir="$local_dir/sbin"
+        if [ -d "$sbin_dir" ]; then
+            PATH="$sbin_dir:$PATH"
+        fi
+    done
+    unsetopt sh_word_split
+fi
+
+# High priority PATH
+for dir in "$HOME/bin" "/usr/local/bin" "/usr/local/share/python" "/usr/texbin" "$HOME/local/godi/bin" "$HOME/local/godi/sbin"; do
     if [ -d "$dir" ]; then
         #case "$PATH" in
         #    *"$dir"*) ;;
@@ -106,4 +126,6 @@ unsetopt nomatch
 # HACK: Keeps a strange error from appearing when launching gvim.
 # https://bugs.launchpad.net/ubuntu/+source/vim/+bug/776499
 export UBUNTU_MENUPROXY=0
+
+alias tmux="TERM=screen-256color-bce tmux"
 
