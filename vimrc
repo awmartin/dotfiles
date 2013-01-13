@@ -81,10 +81,10 @@ inoremap <Up> <C-o>gk
 
 " These also enable 0 and $ to go to the beginning and end of the wrapped
 " line, instead of the actual line.
-"nnoremap 0 g0
-"nnoremap $ g$
-"vnoremap 0 g0
-"vnoremap $ g$
+nnoremap 0 g0
+nnoremap $ g$
+vnoremap 0 g0
+vnoremap $ g$
 
 " Don't outdent Python comments when typing #
 inoremap # <space><C-H>#
@@ -106,6 +106,13 @@ let mapleader = ','
 nnoremap <leader>m :Bufferlist<CR>
 " Choose a different leader key for python-mode plugin.
 let g:pymode_breakpoint_key = '<leader>bp'
+
+nnoremap <C-A-j> :m .+1<CR>==
+nnoremap <C-A-k> :m .-2<CR>==
+inoremap <C-A-j> <Esc>:m .+1<CR>==gi
+inoremap <C-A-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-A-j> :m '>+1<CR>gv=gv
+vnoremap <C-A-k> :m '<-2<CR>gv=gv
 
 " ------------------------------------------------------------------
 " GUI-RELATED
@@ -165,8 +172,9 @@ au BufRead,BufNewFile *.fora set filetype=fora
 au BufRead,BufNewFile *.cppml set filetype=cpp
 au BufRead,BufNewFile *.hppml set filetype=cpp
 
-" Set Ruby tabs to 2 spaces.
+" Set tabs to 2 spaces for ruby, coffee, and others
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
 
 " Changes cursor shape in iTerm2.
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
