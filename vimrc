@@ -82,10 +82,10 @@ inoremap <Up> <C-o>gk
 
 " These also enable 0 and $ to go to the beginning and end of the wrapped
 " line, instead of the actual line.
-nnoremap 0 g0
-nnoremap $ g$
-vnoremap 0 g0
-vnoremap $ g$
+"nnoremap 0 g0
+"nnoremap $ g$
+"vnoremap 0 g0
+"vnoremap $ g$
 
 " Don't outdent Python comments when typing #
 inoremap # <space><C-H>#
@@ -205,10 +205,12 @@ au FileType fora let b:delimitMate_nesting_quotes = ['"']
 
 " Handling the cursor in the terminal on linux.
 if has("autocmd")
-  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  if !isdirectory("/Users")
+    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  endif
 endif
 
 
