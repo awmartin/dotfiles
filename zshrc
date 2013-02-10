@@ -37,7 +37,7 @@ export RUBYOPT="rubygems"
 
 export LC_CTYPE="en_US.UTF-8"
 
-export WREN="$HOME/projects/wren"
+export YUZU="$HOME/projects/yuzu"
 export FORA="$HOME/projects/fora/src"
 
 export PYTHONPATH="$FORA:$PYTHONPATH"
@@ -74,7 +74,7 @@ for dir in "$HOME/bin" "/usr/local/bin" "/usr/local/share/python" "/usr/texbin" 
 done
 
 # Lower priority PATH
-for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$WREN/bin" "$FORA/bsa/scripts" "/usr/lib/llvm-2.7/bin" "$HOME/packages/depot_tools"; do
+for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/bsa/scripts" "/usr/lib/llvm-2.7/bin" "$HOME/packages/depot_tools"; do
     if [ -d "$dir" ]; then
         case "$PATH" in
             *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
