@@ -119,6 +119,10 @@ vnoremap <C-A-k> :m '<-2<CR>gv=gv
 " Makes commenting and uncommenting process easier with ,cb and ,cv.
 map <leader>cv <plug>NERDCommenterUncomment
 
+nnoremap <leader>t :TagbarToggle<CR>
+vnoremap <leader>t :TagbarToggle<CR>
+inoremap <leader>t :TagbarToggle<CR>
+
 
 " ------------------------------------------------------------------
 " GUI-RELATED
