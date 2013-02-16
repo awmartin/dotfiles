@@ -123,6 +123,10 @@ nnoremap <leader>t :TagbarToggle<CR>
 vnoremap <leader>t :TagbarToggle<CR>
 inoremap <leader>t :TagbarToggle<CR>
 
+nnoremap <leader>n :NERDTreeToggle<CR>
+vnoremap <leader>n :NERDTreeToggle<CR>
+inoremap <leader>n :NERDTreeToggle<CR>
+
 
 " ------------------------------------------------------------------
 " GUI-RELATED
