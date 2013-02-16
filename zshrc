@@ -129,3 +129,5 @@ export UBUNTU_MENUPROXY=0
 
 alias tmux="TERM=screen-256color-bce tmux"
 
+alias gg="git grep -nI"
+
