@@ -7,7 +7,7 @@ function! EvaluateForaFile()
     execute "!fora ".bufname("%")
 endfunction
 command! -buffer -nargs=0 ForaCheck :call EvaluateForaFile()
-au BufWritePost <buffer> ForaCheck
+"au BufWritePost <buffer> ForaCheck
 
 let b:fora = 1
 

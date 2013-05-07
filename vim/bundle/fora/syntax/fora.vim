@@ -1,10 +1,10 @@
 " Vim syntax file
 " Language:	fora
-" Maintainer:	William Martin <william.martin@broadstreetanalytics.com>
+" Maintainer:	William Martin <william@ufora.com>
 " Updaters:	
 " URL:		
 " Changes:	
-" Last Change:	2012 Jun 28
+" Last Change:	2013 Apr 30
 
 
 if !exists("main_syntax")
@@ -40,7 +40,7 @@ syn region  foraRegexpString     start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gi
 syn keyword foraConditional	if else switch if_split
 syn keyword foraRepeat		while for
 syn keyword foraBranch		break next cached
-syn keyword foraOperator	and or in is
+syn keyword foraOperator	and or in is not
 syn keyword foraType		JOV Dictionary MutableVector Vector Anything AnyConstant AnyMutable Class Tuple Integer Float PythonObject Nothing String Symbol Tag Bool Int8 Int16 Int32 Int64 UInt8 UInt16 UInt32 UInt64 Float32 Float64 DateTime TimeDuration
 syn keyword foraStatement	return yield
 syn keyword foraBoolean		true false
