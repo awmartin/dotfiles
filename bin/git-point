@@ -1,0 +1,3 @@
+
+git update-ref refs/heads/$1 `git rev-parse $2`
+
