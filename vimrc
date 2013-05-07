@@ -127,6 +127,12 @@ nnoremap <leader>n :NERDTreeToggle<CR>
 vnoremap <leader>n :NERDTreeToggle<CR>
 inoremap <leader>n :NERDTreeToggle<CR>
 
+" ------------------------------------------------------------------
+" Custom Keyboard Shortcuts
+
+noremap <leader>wl :set background=light<CR>
+noremap <leader>wd :set background=dark<CR>
+
 
 " ------------------------------------------------------------------
 " GUI-RELATED
@@ -161,6 +167,7 @@ set list
 " Python-Mode plugin settings
 
 let g:pymode_lint_checker = "pyflakes,mccabe"
+"let g:pymode_lint_checker = "pylint"
 
 " Override some of the default format, text wrapping, etc.
 let g:pymode_options_other = 0
