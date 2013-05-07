@@ -43,6 +43,27 @@ export FORA="$HOME/projects/fora/src"
 export PYTHONPATH="$FORA:$PYTHONPATH"
 export FORAPATH="$FORA/../playground"
 
+# High priority PATH
+for dir in "$HOME/bin" "/usr/local/bin" "/usr/texbin"; do
+    if [ -d "$dir" ]; then
+        #case "$PATH" in
+        #    *"$dir"*) ;;
+        #    *) PATH="$dir:$PATH" ;;
+        #esac
+        PATH="$dir:$PATH"
+    fi
+done
+
+# Lower priority PATH
+for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/bsa/scripts" "$HOME/packages/depot_tools"; do
+    if [ -d "$dir" ]; then
+        case "$PATH" in
+            *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
+            *) PATH="$PATH:$dir" ;;
+        esac
+    fi
+done
+
 # Local package overrides
 if [ -d "$HOME/local" ]; then
     setopt sh_word_split
@@ -62,27 +83,6 @@ if [ -d "$HOME/local" ]; then
     unsetopt sh_word_split
 fi
 
-# High priority PATH
-for dir in "$HOME/bin" "/usr/local/bin" "/usr/local/share/python" "/usr/texbin" "$HOME/local/godi/bin" "$HOME/local/godi/sbin"; do
-    if [ -d "$dir" ]; then
-        #case "$PATH" in
-        #    *"$dir"*) ;;
-        #    *) PATH="$dir:$PATH" ;;
-        #esac
-        PATH="$dir:$PATH"
-    fi
-done
-
-# Lower priority PATH
-for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/bsa/scripts" "/usr/lib/llvm-2.7/bin" "$HOME/packages/depot_tools"; do
-    if [ -d "$dir" ]; then
-        case "$PATH" in
-            *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
-            *) PATH="$PATH:$dir" ;;
-        esac
-    fi
-done
-
 MANPATH="$HOME/local/godi/man:$MANPATH"
 
 export PATH MANPATH
@@ -100,6 +100,7 @@ done
 if [ -e "/Users" ]; then
     # We're likely on Mac OS.
     source $HOME/.osx
+    alias pylint="python /Library/Python/2.7/site-packages/pylint/lint.py"
 fi
 
 if [[ ! -e "/Users" && -e "/home" ]]; then
@@ -108,9 +109,9 @@ if [[ ! -e "/Users" && -e "/home" ]]; then
 fi
 
 # Put these last to override the oh-my-zsh defaults. "tree" doesn't exist on OSX.
-alias ll='ls -alF'
+alias l='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -CF'
 
 alias listports="sudo lsof -i -P | grep -i \"listen\""
 
