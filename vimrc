@@ -132,6 +132,7 @@ inoremap <leader>n :NERDTreeToggle<CR>
 
 noremap <leader>wl :set background=light<CR>
 noremap <leader>wd :set background=dark<CR>
+noremap <leader>wr :redraw!<CR>
 
 
 " ------------------------------------------------------------------
