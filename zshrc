@@ -55,7 +55,7 @@ for dir in "$HOME/bin" "/usr/local/bin" "/usr/texbin"; do
 done
 
 # Lower priority PATH
-for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/bsa/scripts" "$HOME/packages/depot_tools"; do
+for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/ufora/scripts" "$HOME/packages/depot_tools"; do
     if [ -d "$dir" ]; then
         case "$PATH" in
             *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
