@@ -23,7 +23,7 @@ update_other () {
 
     if [ "$NEW_REVISION" = "$CURRENT_REVISION" ]
     then
-        echo "The current revision equals the remote revision No update required."
+        echo "The current revision equals the remote revision. No update required."
         exit 0
     fi
 
