@@ -15,7 +15,7 @@ alias ia="open $1 -a /Applications/iA\ Writer.app"
 
 alias gvim="mvim"
 
-alias js="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
-
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+
+alias pixel="cd /Users/awmartin/Dropbox/Spatial\ Pixel/Spatial\ Pixel\ Site"
 
