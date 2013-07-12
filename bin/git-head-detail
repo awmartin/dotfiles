@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Shows info about the current commit.
+git cat-file -p HEAD
+
