@@ -12,6 +12,7 @@
     A = add -A
     br = branch
     st = status
+    ri = rebase -i
 
 # ----------------------------------------------------------------------------------------------
 # Kaleidoscope auto-generated config
@@ -33,8 +34,8 @@
 # ----------------------------------------------------------------------------------------------
 # Other merge and diff tools
 
-[mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.localized/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+# [mergetool "sourcetree"]
+#     cmd = /Applications/SourceTree.localized/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+#     trustExitCode = true
 [oh-my-zsh]
 	hide-status = 1
