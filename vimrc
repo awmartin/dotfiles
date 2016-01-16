@@ -59,7 +59,16 @@ set foldlevel=99
 set diffopt+=iwhite
 
 " Files to ignore (ctrl-p, CommandT, etc.)
-set wildignore+=*.pyc,*.png,*.o,.build*
+set wildignore+=*.pyc,*.o,.build*,*.png
+set wildignore+=third_party/**,windows_build/**,nacl_build/**
+set wildignore+=ufora/web/relay/node_modules/**,ufora/web/tsunami/node_modules/**
+set wildignore+=ufora/web/local_proxy/node_modules/**
+set wildignore+=ufora/web/relay/tsunami/components/**
+set wildignore+=__init__.py
+
+" Set the directory of the swap file
+" The // indicates that the swap name should be globally unique
+set directory=~/.vim/tmp//,/tmp
 
 " ------------------------------------------------------------------
 " KEYBOARD
@@ -119,13 +128,11 @@ vnoremap <C-A-k> :m '<-2<CR>gv=gv
 " Makes commenting and uncommenting process easier with ,cb and ,cv.
 map <leader>cv <plug>NERDCommenterUncomment
 
-nnoremap <leader>t :TagbarToggle<CR>
-vnoremap <leader>t :TagbarToggle<CR>
-inoremap <leader>t :TagbarToggle<CR>
+nnoremap <leader>g :TagbarToggle<CR>
+vnoremap <leader>g :TagbarToggle<CR>
 
 nnoremap <leader>n :NERDTreeToggle<CR>
 vnoremap <leader>n :NERDTreeToggle<CR>
-inoremap <leader>n :NERDTreeToggle<CR>
 
 " ------------------------------------------------------------------
 " Custom Keyboard Shortcuts
@@ -147,7 +154,7 @@ if has("gui_running")
     autocmd VimEnter * NERDTree
     autocmd VimEnter * wincmd p
     " Show the Tagbar on startup.
-    autocmd VimEnter * TagbarOpen
+    "autocmd VimEnter * TagbarOpen
 endif
 
 set background=dark
@@ -175,16 +182,21 @@ let g:pymode_options_other = 0
 
 " ------------------------------------------------------------------
 "
-set complete+=t
+" Remove 'i' setting which scans all included files. This makes autocomplete local to the buffer.
+" The default setting for complete is .,w,b,u,t,i.
+set complete-=i
+
+" Turns off automatic text wrapping.
 set formatoptions-=t
 
 " Set the column indicator to 100 characters wide
 set colorcolumn=100
 " Wrap at 100 characters.
 set textwidth=100
+" No wrapping.
+set nowrap
 " Show line numbers
 set number
-set nowrap
 " Set the width of the line numbers column to 5 characters to handle the switching betwee
 " relative and absolute line numbering smoothly.
 set nuw=5
@@ -207,6 +219,9 @@ au BufRead,BufNewFile *.hppml set filetype=cpp
 " Set tabs to 2 spaces for ruby, coffee, and others
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+autocmd Filetype scss setlocal ts=2 sw=2 expandtab
+autocmd Filetype stylus setlocal ts=2 sw=2 expandtab
 
 " Changes cursor shape in iTerm2.
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -215,9 +230,10 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " ------------------------------------------------------------------
 " delimitMate plugin settings
 
-au FileType python let b:delimitMate_nesting_quotes = ['"']
-au Filetype fora let b:delimitMate_quotes = "\" '"
-au FileType fora let b:delimitMate_nesting_quotes = ['"']
+" This doesn't seem to work very well.
+"au FileType python let b:delimitMate_nesting_quotes = ['"']
+"au Filetype fora let b:delimitMate_quotes = "\" '"
+"au FileType fora let b:delimitMate_nesting_quotes = ['"']
 
 " Handling the cursor in the terminal on linux.
 if has("autocmd")
@@ -239,4 +255,9 @@ let g:EasyMotion_keys = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRS
 " Ctrl-P plugin settings
 
 let g:ctrlp_by_filename = 1
+
+" ------------------------------------------------------------------
+" Command-T plugin settings
+
+let g:CommandTMaxHeight = 20
 
