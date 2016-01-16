@@ -1,6 +1,7 @@
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
+    quotepath = false
 [color]
     ui = auto
 [github]
@@ -13,29 +14,34 @@
     br = branch
     st = status
     ri = rebase -i
+    ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 
-# ----------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------
 # Kaleidoscope auto-generated config
 
 [difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
-	tool = Kaleidoscope
+    tool = Kaleidoscope
 [difftool]
-	prompt = false
+    prompt = false
 [mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
 [mergetool]
-	prompt = false
+    prompt = false
 [merge]
-	tool = Kaleidoscope
+    tool = Kaleidoscope
 
-# ----------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------
 # Other merge and diff tools
 
-# [mergetool "sourcetree"]
-#     cmd = /Applications/SourceTree.localized/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-#     trustExitCode = true
 [oh-my-zsh]
-	hide-status = 1
+    hide-status = 1
+[user]
+    name = William Martin
+    email = awmartin@gmail.com
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
