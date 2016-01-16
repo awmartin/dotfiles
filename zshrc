@@ -41,7 +41,6 @@ export YUZU="$HOME/projects/yuzu"
 export FORA="$HOME/projects/fora/src"
 
 export PYTHONPATH="$FORA:$PYTHONPATH"
-export FORAPATH="$FORA/../playground"
 
 # High priority PATH
 for dir in "$HOME/bin" "/usr/local/bin" "/usr/texbin"; do
@@ -55,7 +54,7 @@ for dir in "$HOME/bin" "/usr/local/bin" "/usr/texbin"; do
 done
 
 # Lower priority PATH
-for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/ufora/scripts" "$HOME/packages/depot_tools"; do
+for dir in "$HOME/.rvm/bin" "$HOME/node_modules/.bin" "$YUZU/bin" "$FORA/ufora/scripts" "$HOME/packages/depot_tools" "/Applications/Postgres.app/Contents/Versions/9.3/bin"; do
     if [ -d "$dir" ]; then
         case "$PATH" in
             *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
@@ -132,3 +131,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 alias gg="git grep -nI"
 
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
+
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
