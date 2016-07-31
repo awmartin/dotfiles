@@ -2,6 +2,8 @@ node_modules_dir="$HOME/node_modules"
 if [ -d $node_modules_dir ]; then
   node_modules_bin_dir="$node_modules_dir/.bin"
   if [ -d $node_modules_bin_dir ]; then
-    export PATH="$node_modules_bin_dir:$PATH"
+    PATH="$node_modules_bin_dir:$PATH"
   fi
 fi
+
+export PATH

@@ -1,5 +1,5 @@
 # For bash.
 
-source "$HOME/.localrc"
+# Load env variables and shell config.
 source "$HOME/.profile"
 source "$HOME/dotfiles/scripts/load_shell_config"

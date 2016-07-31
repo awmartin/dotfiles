@@ -38,9 +38,8 @@ __git_files () {
 unsetopt nomatch
 
 source "$ZSH/oh-my-zsh.sh"
-source "$HOME/.localrc"
 
-# Loop over the config files and source them.
+# Load env variables and shell config.
 setopt sh_word_split
 source "$HOME/.profile"
 source "$HOME/dotfiles/scripts/load_shell_config"

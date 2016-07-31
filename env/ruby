@@ -3,5 +3,7 @@ export RUBYOPT="rubygems"
 # RVM-related things.
 if [ -d "$HOME/.rvm" ]; then
   bin_rvm="$HOME/.rvm/bin"
-  export PATH="$bin_rvm:$PATH"
+  PATH="$bin_rvm:$PATH"
 fi
+
+export PATH
