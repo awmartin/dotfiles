@@ -3,7 +3,6 @@
 dotfiles_dir="$HOME/dotfiles"
 dotfiles_home_dir="$dotfiles_dir/home"
 
-# These files will be linked without a leading dot.
 toplevel_folders_link_without_dots=( "bin" )
 toplevel_folders_link_with_dots=( "vim" )
 files_link_with_dots=`ls -1 $dotfiles_home_dir`
@@ -18,7 +17,7 @@ for folder in $toplevel_folders_link_without_dots; do
 done
 
 for folder in $toplevel_folders_link_with_dots; do
-  # Back up the existing folder.
+  # Back up the existing dot-prefixed folder.
   if [ -d "$HOME/.$folder" ]; then
     mv "$HOME/.$folder" "$HOME/.$folder.backup"
   fi
@@ -37,7 +36,14 @@ done
 
 
 # Update the git submodules in the dotfiles folder.
-cd $dotfiles_dir
-git submodule init
-git submodule update
-cd -
+if hash git 2>/dev/null; then
+  cd $dotfiles_dir
+  git submodule init
+  git submodule update
+  cd -
+else
+  echo "Install git to initialize the submodules. Then run:"
+  echo "  git submodule init"
+  echo "  git submodule update"
+  echo "from the dotfiles directory"
+fi

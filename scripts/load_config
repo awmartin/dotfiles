@@ -5,7 +5,6 @@ config_files=`ls -d -- $config_dir/*`
 
 for file in $config_files; do
   if [ -e "$file" ]; then
-    echo $file
     source ${file}
   fi
 done
