@@ -9,7 +9,7 @@ dotfiles_dir="$HOME/dotfiles"
 # First, append all the bash scripts to existing bash scripts if found.
 dotfiles_bash_dir="$dotfiles_dir/bash"
 
-bash_files=( "bash_profile" "bashrc" )
+bash_files=( "bash_profile" "bashrc" "profile" )
 for file in $bash_files; do
   if [ -f "$HOME/.$file" ]; then
     # If the file exists, source the dotfiles file at the end.
