@@ -1,12 +1,38 @@
 #!/bin/sh
 
+dotfiles_dir="$HOME/dotfiles"
+
 echo
 echo "Starting bootstrap process..."
 echo
 
-dotfiles_dir="$HOME/dotfiles"
+# Update the git submodules in the dotfiles folder.
+# Ref: http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
+if hash git 2>/dev/null; then
+  echo "Initializing all the git submodules."
+  echo
 
-# First, append all the bash scripts to existing bash scripts if found.
+  cd $dotfiles_dir
+  git submodule init
+  git submodule update
+  cd -
+
+  # Install bash-it
+  cd $HOME
+  source $HOME/.bash-it/install.sh --silent
+  cd -
+else
+  echo "Install git to initialize the submodules. Then run:"
+  echo "  git submodule init"
+  echo "  git submodule update"
+  echo "from the dotfiles directory."
+  echo
+  echo "Then run the ~/bash-it/install.sh script if you want to install bash-it."
+fi
+echo
+
+
+# Append all the bash scripts to existing bash scripts if found.
 dotfiles_bash_dir="$dotfiles_dir/bash"
 
 bash_files=( "bash_profile" "bashrc" "profile" )
@@ -89,24 +115,6 @@ for file in $files_link_with_dots; do
 done
 
 
-# Update the git submodules in the dotfiles folder.
-# Ref: http://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
-if hash git 2>/dev/null; then
-  echo
-  echo "Initializing all the git submodules."
-  echo
-
-  cd $dotfiles_dir
-  git submodule init
-  git submodule update
-  cd -
-else
-  echo
-  echo "Install git to initialize the submodules. Then run:"
-  echo "  git submodule init"
-  echo "  git submodule update"
-  echo "from the dotfiles directory"
-fi
 
 echo
 echo "Bootstrap complete."
