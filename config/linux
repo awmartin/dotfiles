@@ -1,0 +1,11 @@
+if [[ ! -e "/Users" && -e "/home" ]]; then
+  alias regnome="sudo /etc/init.d/gdm restart"
+  alias startgnome="sudo /etc/init.d/gdm start"
+  alias stopgnome="sudo /etc/init.d/gdm stop"
+
+  alias sleepme="pmi action suspend"
+
+  # HACK: Keeps a strange error from appearing when launching gvim.
+  # https://bugs.launchpad.net/ubuntu/+source/vim/+bug/776499
+  export UBUNTU_MENUPROXY=0
+fi

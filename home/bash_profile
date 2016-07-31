@@ -1,0 +1,7 @@
+# bash_profile is used for login shells (e.g. iTerm), but .bashrc is for interactive shells
+# such as those for GNU/Linux emulators. So source .bashrc in .bash_profile to get a consistent
+# loading experience and to support the bash-it project.
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi

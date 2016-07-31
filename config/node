@@ -1,0 +1,13 @@
+node_modules_dir="$HOME/node_modules"
+if [ -d $node_modules_dir ]; then
+  node_modules_bin_dir="$node_modules_dir/.bin"
+  if [ -d $node_modules_bin_dir ]; then
+    export PATH="$node_modules_bin_dir:$PATH"
+  fi
+fi
+
+# Load NVM.
+nvm_dir="$HOME/.nvm"
+if [ -d $nvm_dir ]; then
+  [[ -s $nvm_dir/nvm.sh ]] && . $nvm_dir/nvm.sh
+fi

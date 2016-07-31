@@ -1,8 +1,7 @@
 # dotfiles
 
-Configuration files for Mac OS X Lion and Ubuntu.
+Configuration files for macOS and Linux.
 
-## Dependencies
+# Installing
 
-These config files are designed for zshell by default.
-
+Contains config files intended to work with zshell and bash.

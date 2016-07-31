@@ -1,7 +1,0 @@
-
-alias regnome="sudo /etc/init.d/gdm restart"
-alias startgnome="sudo /etc/init.d/gdm start"
-alias stopgnome="sudo /etc/init.d/gdm stop"
-
-alias sleepme="pmi action suspend"
-

@@ -1,61 +1,43 @@
-#!/bin/bash
+#!/bin/sh
 
-dotfiles_dir=$HOME/dotfiles
+dotfiles_dir="$HOME/dotfiles"
+dotfiles_home_dir="$dotfiles_dir/home"
 
 # These files will be linked without a leading dot.
-non_dot_files=( "bin" )
+toplevel_folders_link_without_dots=( "bin" )
+toplevel_folders_link_with_dots=( "vim" )
+files_link_with_dots=`ls -1 $dotfiles_home_dir`
 
-# These files will not be linked at all.
-ignore_files=( "bootstrap.sh" "README.md" )
+for folder in $toplevel_folders_link_without_dots; do
+  # Back up the existing folder.
+  if [ -d "$HOME/$folder" ]; then
+    mv "$HOME/$folder" "$HOME/$folder.backup"
+  fi
 
-# Gather the names of all the top-level files and folders in this directory.
-files=`ls -1 ${dotfiles_dir}`
-
-# Write a single symlink.
-write() {
-    non_dot=0
-
-    for name in $non_dot_files; do
-        if [ "$1" = "$name" ]; then
-
-            # If this file exists, rename it to file.old.
-            if [ -e "$HOME/$1" ]; then
-                mv "$HOME/$1" "$HOME/$1.old"
-            fi
-
-            ln -s "$dotfiles_dir/$1" "$HOME/$1"
-            non_dot=1
-        fi
-    done
-
-    # This file is a hidden file, so the symlink should have a dot.
-    if [ $non_dot -eq 0 ]; then
-
-        # If .file exists, rename it to .file.old.
-        if [ -e "$HOME/.$1" ]; then
-            mv "$HOME/.$1" "$HOME/.$1.old"
-        fi
-
-        ln -s "$dotfiles_dir/$1" "$HOME/.$1"
-    fi
-}
-
-for file in $files; do
-    should_ignore=0
-
-    for name in $ignore_files; do
-        if [ "$file" = "$name" ]; then
-            should_ignore=1
-        fi
-    done
-
-    if [ $should_ignore -eq 0 ]; then
-        write $file
-    fi
+  ln -s "$dotfiles_dir/$folder" "$HOME/$folder"
 done
 
+for folder in $toplevel_folders_link_with_dots; do
+  # Back up the existing folder.
+  if [ -d "$HOME/.$folder" ]; then
+    mv "$HOME/.$folder" "$HOME/.$folder.backup"
+  fi
+
+  ln -s "$dotfiles_dir/$folder" "$HOME/.$folder"
+done
+
+for file in $files_link_with_dots; do
+  # Back up the existing dotfile.
+  if [ -e "$HOME/.$file" ]; then
+    mv "$HOME/.$file" "$HOME/.$file.backup"
+  fi
+
+  ln -s "$dotfiles_home_dir/$file" "$HOME/.$file"
+done
+
+
+# Update the git submodules in the dotfiles folder.
 cd $dotfiles_dir
 git submodule init
 git submodule update
 cd -
-

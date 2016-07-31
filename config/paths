@@ -1,0 +1,32 @@
+bin_home="$HOME/bin"
+bin_usr_local="/usr/local/bin"
+
+path_high_priority=( $bin_home $bin_usr_local )
+
+# High priority PATH
+for dir in $path_high_priority; do
+    if [ -d "$dir" ]; then
+        #case "$PATH" in
+        #    *"$dir"*) ;;
+        #    *) PATH="$dir:$PATH" ;;
+        #esac
+        PATH="$dir:$PATH"
+    fi
+done
+
+# path_low_priority = ( )
+
+# Lower priority PATH
+# for dir in $path_low_priority; do
+#     if [ -d "$dir" ]; then
+#         case "$PATH" in
+#             *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
+#             *) PATH="$PATH:$dir" ;;
+#         esac
+#     fi
+# done
+
+export PATH
+
+# Set overrides for packages in the ~/local directory.
+source "$HOME/dotfiles/scripts/set_local_package_paths"

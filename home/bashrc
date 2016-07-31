@@ -1,0 +1,3 @@
+source "$HOME/dotfiles/scripts/load_config"
+source "$HOME/.localrc"
+source "$HOME/.profile"

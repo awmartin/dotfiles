@@ -1,0 +1,4 @@
+if [ -d "/usr/local/heroku/bin" ]; then
+  bin_heroku="/usr/local/heroku/bin"
+  export PATH="$bin_heroku:$PATH"
+fi

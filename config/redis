@@ -1,0 +1,4 @@
+redis_conf="/usr/local/etc/redis.conf"
+if [ -e $redis_conf ]; then
+  alias startredis="redis-server $redis_conf"
+fi
