@@ -1,0 +1,2 @@
+# Set environment variables here.
+source "$HOME/dotfiles/scripts/load_env_config"

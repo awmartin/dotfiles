@@ -1,0 +1,12 @@
+# Sources all the scripts in dotfiles/env, intended for environment variables.
+
+env_config_dir="$HOME/.env"
+if [ -d $env_config_dir ]; then
+  config_files=`ls -d -- $env_config_dir/*`
+
+  for file in $config_files; do
+    if [ -e "$file" ]; then
+      source ${file}
+    fi
+  done
+fi

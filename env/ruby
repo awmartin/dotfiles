@@ -4,8 +4,4 @@ export RUBYOPT="rubygems"
 if [ -d "$HOME/.rvm" ]; then
   bin_rvm="$HOME/.rvm/bin"
   export PATH="$bin_rvm:$PATH"
-
-  if [ -e "$HOME/.rvm/scripts/rvm" ]; then
-    source "$HOME/.rvm/scripts/rvm"
-  fi
 fi

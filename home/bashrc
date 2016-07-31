@@ -1,3 +1,5 @@
-source "$HOME/dotfiles/scripts/load_config"
+# For bash.
+
 source "$HOME/.localrc"
 source "$HOME/.profile"
+source "$HOME/dotfiles/scripts/load_shell_config"

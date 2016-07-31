@@ -14,6 +14,7 @@ for dir in $path_high_priority; do
     fi
 done
 
+
 # path_low_priority = ( )
 
 # Lower priority PATH
@@ -26,7 +27,24 @@ done
 #     fi
 # done
 
-export PATH
 
-# Set overrides for packages in the ~/local directory.
-source "$HOME/dotfiles/scripts/set_local_package_paths"
+# Local packages are a way to override the installs of scripts and commands by creating
+# folders in ~/local/package_name/bin.
+
+if [ -d "$HOME/local" ]; then
+  local_packages=`ls -d -- $HOME/local/*`
+
+  for local_dir in $local_packages; do
+    bin_dir="$local_dir/bin"
+    if [ -d "$bin_dir" ]; then
+      PATH="$bin_dir:$PATH"
+    fi
+
+    sbin_dir="$local_dir/sbin"
+    if [ -d "$sbin_dir" ]; then
+      PATH="$sbin_dir:$PATH"
+    fi
+  done
+fi
+
+export PATH

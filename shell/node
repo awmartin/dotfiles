@@ -1,0 +1,5 @@
+# Load NVM.
+nvm_dir="$HOME/.nvm"
+if [ -d $nvm_dir ]; then
+  [[ -s $nvm_dir/nvm.sh ]] && . $nvm_dir/nvm.sh
+fi

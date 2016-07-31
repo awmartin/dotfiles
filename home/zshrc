@@ -39,10 +39,9 @@ unsetopt nomatch
 
 source "$ZSH/oh-my-zsh.sh"
 source "$HOME/.localrc"
-source "$HOME/.profile"
-
 
 # Loop over the config files and source them.
 setopt sh_word_split
-source "$HOME/dotfiles/scripts/load_config"
+source "$HOME/.profile"
+source "$HOME/dotfiles/scripts/load_shell_config"
 unsetopt sh_word_split

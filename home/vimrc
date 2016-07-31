@@ -60,10 +60,6 @@ set diffopt+=iwhite
 
 " Files to ignore (ctrl-p, CommandT, etc.)
 set wildignore+=*.pyc,*.o,.build*,*.png
-set wildignore+=third_party/**,windows_build/**,nacl_build/**
-set wildignore+=ufora/web/relay/node_modules/**,ufora/web/tsunami/node_modules/**
-set wildignore+=ufora/web/local_proxy/node_modules/**
-set wildignore+=ufora/web/relay/tsunami/components/**
 set wildignore+=__init__.py
 
 " Set the directory of the swap file
@@ -260,4 +256,3 @@ let g:ctrlp_by_filename = 1
 " Command-T plugin settings
 
 let g:CommandTMaxHeight = 20
-

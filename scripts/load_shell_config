@@ -1,0 +1,12 @@
+# Sources all the scripts in dotfiles/shell, intended for aliases, etc.
+
+shell_config_dir="$HOME/.shell"
+if [ -d $shell_config_dir ]; then
+  config_files=`ls -d -- $shell_config_dir/*`
+
+  for file in $config_files; do
+    if [ -e "$file" ]; then
+      source ${file}
+    fi
+  done
+fi
