@@ -4,7 +4,7 @@ dotfiles_dir="$HOME/dotfiles"
 dotfiles_home_dir="$dotfiles_dir/home"
 
 toplevel_folders_link_without_dots=( "bin" )
-toplevel_folders_link_with_dots=( "vim" )
+toplevel_folders_link_with_dots=( "vim" "oh-my-zsh" )
 files_link_with_dots=`ls -1 $dotfiles_home_dir`
 
 for folder in $toplevel_folders_link_without_dots; do
