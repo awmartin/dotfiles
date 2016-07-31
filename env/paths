@@ -1,19 +1,15 @@
-bin_home="$HOME/bin"
-bin_usr_local="/usr/local/bin"
 
-path_high_priority=( $bin_home $bin_usr_local )
+# High priority PATHs in ~/bin/folder
 
-# High priority PATH
+path_high_priority=`ls -d $HOME/bin/*`
+
 for dir in $path_high_priority; do
     if [ -d "$dir" ]; then
-        #case "$PATH" in
-        #    *"$dir"*) ;;
-        #    *) PATH="$dir:$PATH" ;;
-        #esac
         PATH="$dir:$PATH"
     fi
 done
 
+PATH="/usr/local/bin:$PATH"
 
 # path_low_priority = ( )
 
@@ -28,8 +24,8 @@ done
 # done
 
 
-# Local packages are a way to override the installs of scripts and commands by creating
-# folders in ~/local/package_name/bin.
+# Local packages are a way to override the installs of /usr packages by adding the folders
+# to ~/local. It looks for all executables in ~/local/package/bin and ~/local/package/sbin.
 
 if [ -d "$HOME/local" ]; then
   local_packages=`ls -d -- $HOME/local/*`
