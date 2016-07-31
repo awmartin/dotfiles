@@ -2,6 +2,8 @@
     editor = vim
     excludesfile = ~/.gitignore_global
     quotepath = false
+    # Ensures that diffs less than a page will not be wrapped with less.
+    pager = less -F -X
 [color]
     ui = auto
 [github]
@@ -21,9 +23,6 @@
 
 [difftool "Kaleidoscope"]
     cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[diff]
-    tool = Kaleidoscope
-[difftool]
     prompt = false
 [mergetool "Kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
@@ -34,10 +33,7 @@
     tool = Kaleidoscope
 
 # -------------------------------------------------------------------------------------
-# Other merge and diff tools
 
-[oh-my-zsh]
-    hide-status = 1
 [user]
     name = William Martin
     email = awmartin@gmail.com
