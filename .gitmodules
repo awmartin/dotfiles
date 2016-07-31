@@ -64,3 +64,6 @@
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
+[submodule "bash-it"]
+	path = bash-it
+	url = https://github.com/Bash-it/bash-it.git
