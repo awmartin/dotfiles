@@ -1,5 +1,5 @@
 # For bash.
 
-# Load env variables and shell config.
-source "$HOME/.profile"
-source "$HOME/dotfiles/scripts/load_shell_config"
+if [ -f ~/.bash_profile ]; then
+  . ~/.bash_profile
+fi
