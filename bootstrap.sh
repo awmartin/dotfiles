@@ -16,11 +16,6 @@ if hash git 2>/dev/null; then
   git submodule init
   git submodule update
   cd -
-
-  # Install bash-it
-  cd $HOME
-  source $HOME/.bash-it/install.sh --silent
-  cd -
 else
   echo "Install git to initialize the submodules. Then run:"
   echo "  git submodule init"
@@ -32,23 +27,11 @@ fi
 echo
 
 
-# Append all the bash scripts to existing bash scripts if found.
-dotfiles_bash_dir="$dotfiles_dir/bash"
 
 bash_files=( "bash_profile" "bashrc" "profile" )
-for file in $bash_files; do
-  if [ -f "$HOME/.$file" ]; then
-    # If the file exists, source the dotfiles file at the end.
-    echo "Appending: source \"dotfiles/bash/$file\" to ~/.$file"
-    echo -e "\nsource \"$dotfiles_bash_dir/$file\"" >> "$HOME/.$file"
-  else
-    # Otherwise, copy it from dotfiles/bash.
-    echo "~/.$file didn't exist. Copying from dotfiles/bash/$file"
-    cp "$dotfiles_bash_dir/$file" "$HOME/.$file"
-  fi
+for file in "${bash_files[@]}"; do
+  touch "$HOME/.$file"
 done
-
-echo
 
 
 # Zshell is similar, but include a template .zshrc if it doesn't already exist.
@@ -61,14 +44,14 @@ fi
 
 # And append sourcing the contents of the customizations.
 echo "Appending: source \"dotfiles/zsh/zshrc\" to .zshrc"
-echo -e "\nsource \"$dotfiles_zsh_dir/zshrc\"" >> $HOME/.zshrc
+( echo; echo "source \"$dotfiles_zsh_dir/zshrc\"" ) >> $HOME/.zshrc
 echo
 
 
 # Links a subset of folders to $HOME.
 toplevel_folders_link_without_dots=( "bin" )
 
-for folder in $toplevel_folders_link_without_dots; do
+for folder in "${toplevel_folders_link_without_dots[@]}"; do
   # Back up the existing folder.
   if [ -d "$HOME/$folder" ]; then
     echo "Backing up ~/$folder"
@@ -85,7 +68,7 @@ echo
 # Links a subset of folders to their dot equivalents in $HOME.
 toplevel_folders_link_with_dots=( "vim" "oh-my-zsh" "env" "shell" "bash-it" )
 
-for folder in $toplevel_folders_link_with_dots; do
+for folder in "${toplevel_folders_link_with_dots[@]}"; do
   # Back up the existing dot-prefixed folder.
   if [ -d "$HOME/.$folder" ]; then
     echo "Backing up ~/.$folder"
@@ -95,7 +78,6 @@ for folder in $toplevel_folders_link_with_dots; do
   echo "Symlinking ~/.$folder to dotfiles/$folder"
   ln -s "$dotfiles_dir/$folder" "$HOME/.$folder"
 done
-
 echo
 
 
@@ -113,11 +95,38 @@ for file in $files_link_with_dots; do
   echo "Symlinking ~/.$file to dotfiles/home/$file"
   ln -s "$dotfiles_home_dir/$file" "$HOME/.$file"
 done
-
-
-
 echo
+
+
+# Run the bash-it install
+
+if [ -f $HOME/.bash-it/install.sh ]; then
+  echo "Installing bash-it"
+
+  # Set this env var first to fix some errors in the install script.
+  export BASH_IT="$HOME/.bash-it"
+
+  cd $HOME
+  .bash-it/install.sh --silent
+  cd -
+fi
+echo
+
+
+# Append a source command for all the bash scripts to respective bash scripts.
+dotfiles_bash_dir="$dotfiles_dir/bash"
+
+for file in "${bash_files[@]}"; do
+  if [ -f "$HOME/.$file" ]; then
+    # If the file exists, source the dotfiles file at the end.
+    echo "Appending: source \"dotfiles/bash/$file\" to ~/.$file"
+    ( echo; echo "source \"$dotfiles_bash_dir/$file\"" ) >> "$HOME/.$file"
+  fi
+done
+echo
+
+
 echo "Bootstrap complete."
 echo "Check .bak files to see if there are any commands there that need to be copied."
-ls .*.bak
+ls *.bak 2>/dev/null
 echo
