@@ -176,6 +176,9 @@ let g:pymode_lint_checker = "pyflakes,mccabe"
 " Override some of the default format, text wrapping, etc.
 let g:pymode_options_other = 0
 
+" Enable Python3 support
+let g:pymode_python = "python3"
+
 " ------------------------------------------------------------------
 "
 " Remove 'i' setting which scans all included files. This makes autocomplete local to the buffer.
