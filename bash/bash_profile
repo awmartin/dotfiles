@@ -1,3 +1,4 @@
-# Load env variables and shell config.
-source "$HOME/.profile"
-source "$HOME/dotfiles/scripts/load_shell_config"
+# Only executed for login shells. Terminal.app treats each new windows as a login shell.
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
