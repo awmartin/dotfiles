@@ -1,5 +1,8 @@
 # Load NVM.
-nvm_dir="$HOME/.nvm"
-if [ -d $nvm_dir ]; then
-  [[ -s $nvm_dir/nvm.sh ]] && . $nvm_dir/nvm.sh
-fi
+#nvm_dir="$HOME/.nvm"
+#if [ -d $nvm_dir ]; then
+#  [[ -s $nvm_dir/nvm.sh ]] && . $nvm_dir/nvm.sh
+#fi
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
