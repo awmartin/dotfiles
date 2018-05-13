@@ -4,6 +4,6 @@ if [ -e "/Users" ]; then
 
     # Application terminal shortcuts.
     alias ia="open $1 -a /Applications/iA\ Writer.app"
-    alias ocaml="ledit -x -l 200 -h ~/.ocaml_history ocaml -w Z"
-    alias pylint="python /Library/Python/2.7/site-packages/pylint/lint.py"
+    # alias ocaml="ledit -x -l 200 -h ~/.ocaml_history ocaml -w Z"
+    # alias pylint="python /Library/Python/2.7/site-packages/pylint/lint.py"
 fi
