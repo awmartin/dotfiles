@@ -201,14 +201,13 @@ set nuw=5
 " NERDTree Plugin
 
 " Ignores for NERDTree.
-let NERDTreeIgnore = ['\.pyc','\.png']
+let NERDTreeIgnore = ['\.pyc','\.png', '$py\.class']
 
 
 " ------------------------------------------------------------------
 " Custom Syntax Files
 
 " Syntax for Fora source files.
-au BufRead,BufNewFile *.fora set filetype=fora
 au BufRead,BufNewFile *.cppml set filetype=cpp
 au BufRead,BufNewFile *.hppml set filetype=cpp
 
@@ -218,6 +217,7 @@ autocmd Filetype coffee setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 autocmd Filetype scss setlocal ts=2 sw=2 expandtab
 autocmd Filetype stylus setlocal ts=2 sw=2 expandtab
+autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 
 " Changes cursor shape in iTerm2.
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
