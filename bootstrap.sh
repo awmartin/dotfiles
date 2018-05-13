@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 dotfiles_dir="$HOME/dotfiles"
 
@@ -35,17 +35,17 @@ done
 
 
 # Zshell is similar, but include a template .zshrc if it doesn't already exist.
-dotfiles_zsh_dir="$HOME/dotfiles/zsh"
+# dotfiles_zsh_dir="$HOME/dotfiles/zsh"
 
-if [ ! -f "$HOME/.zshrc" ]; then
-  echo "~/.zshrc not found. Getting template from github.com/robbyrussell/oh-my-zsh"
-  curl -s "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/templates/zshrc.zsh-template" > $HOME/.zshrc
-fi
+# if [ ! -f "$HOME/.zshrc" ]; then
+  # echo "~/.zshrc not found. Getting template from github.com/robbyrussell/oh-my-zsh"
+  # curl -s "https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/templates/zshrc.zsh-template" > $HOME/.zshrc
+# fi
 
 # And append sourcing the contents of the customizations.
-echo "Appending: source \"dotfiles/zsh/zshrc\" to .zshrc"
-( echo; echo "source \"$dotfiles_zsh_dir/zshrc\"" ) >> $HOME/.zshrc
-echo
+# echo "Appending: source \"dotfiles/zsh/zshrc\" to .zshrc"
+# ( echo; echo "source \"$dotfiles_zsh_dir/zshrc\"" ) >> $HOME/.zshrc
+# echo
 
 
 # Links a subset of folders to $HOME.
@@ -66,7 +66,7 @@ echo
 
 
 # Links a subset of folders to their dot equivalents in $HOME.
-toplevel_folders_link_with_dots=( "vim" "oh-my-zsh" "env" "shell" "bash-it" )
+toplevel_folders_link_with_dots=( "vim" "env" "shell" "bash-it" )
 
 for folder in "${toplevel_folders_link_with_dots[@]}"; do
   # Back up the existing dot-prefixed folder.
