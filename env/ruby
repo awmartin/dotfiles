@@ -1,9 +1,15 @@
 export RUBYOPT="rubygems"
 
 # RVM-related things.
-if [ -d "$HOME/.rvm" ]; then
-  bin_rvm="$HOME/.rvm/bin"
-  PATH="$bin_rvm:$PATH"
+# if [ -d "$HOME/.rvm" ]; then
+#   bin_rvm="$HOME/.rvm/bin"
+#   PATH="$bin_rvm:$PATH"
+# fi
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+if [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
 fi
 
 export PATH

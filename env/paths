@@ -1,13 +1,4 @@
 
-# High priority PATHs in ~/bin/folder
-
-path_high_priority=`ls -d $HOME/bin/*`
-
-for dir in $path_high_priority; do
-    if [ -d "$dir" ]; then
-        PATH="$dir:$PATH"
-    fi
-done
 
 PATH="/usr/local/bin:$PATH"
 
@@ -42,5 +33,20 @@ if [ -d "$HOME/local" ]; then
     fi
   done
 fi
+
+
+# High priority paths
+
+if [ -d "$HOME/bin" ]; then
+  path_high_priority=`ls -d $HOME/bin/*`
+
+  for dir in $path_high_priority; do
+    if [ -d "$dir" ]; then
+      PATH="$dir:$PATH"
+    fi
+  done
+fi
+
+PATH="$HOME/bin:$PATH"
 
 export PATH
