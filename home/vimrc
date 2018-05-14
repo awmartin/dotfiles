@@ -50,7 +50,8 @@ set showmode
 
 " Set the visual bell, but disable it in gvimrc with 'set vb t_vb=' so no beep
 " or flash ever occurs: http://vim.wikia.com/wiki/Disable_beeping
-set visualbell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 " Unfold all folds by default.
 set foldlevel=99
