@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function help ()
+{
+    echo "Supported commands are:"
+    echo
+    echo "   sudo dns flush        - flushes the DNS cache on macOS"
+    echo "   dns info example.com  - gets dns information with nslookup and dig"
+    echo "   dns help              - this help message"
+}
+
+command=$1
+
+if [ "$command" == "info" ]; then
+
+    domain=$2
+
+    echo "-------------------------------------------------"
+    echo "nslookup $domain"
+    nslookup $domain
+
+    echo "-------------------------------------------------"
+    echo "dig $domain any"
+    dig $domain any
+
+elif [ "$command" == "flush" ]; then
+
+    echo "-------------------------------------------------"
+    echo "running dscacheutil..."
+    dscacheutil -flushcache
+    echo "killing mDNSResponder"
+    killall -HUP mDNSResponder
+    echo "Done. The cache should be clear."
+
+elif [ "$command" == "help" ]; then
+    help
+
+else
+    help
+    
+fi
