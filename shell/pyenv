@@ -1,2 +1,4 @@
 # Add shims and autocomplete from pyenv.
+
+# Disabled temporarily until the zlib install problem can be fixed. Pyenv can't install python for some reason.
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
