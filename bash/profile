@@ -1,3 +1,4 @@
 # Set environment variables here.
 source "$HOME/.localrc"
 source "$HOME/dotfiles/scripts/load_env_config"
+source "$HOME/dotfiles/scripts/load_shell_config"
