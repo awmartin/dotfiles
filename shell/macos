@@ -1,9 +1,0 @@
-if [ -e "/Users" ]; then
-    alias showall="defaults write com.apple.finder AppleShowAllFiles TRUE"
-    alias hideall="defaults write com.apple.finder AppleShowAllFiles FALSE"
-
-    # Application terminal shortcuts.
-    alias ia="open $1 -a /Applications/iA\ Writer.app"
-    # alias ocaml="ledit -x -l 200 -h ~/.ocaml_history ocaml -w Z"
-    # alias pylint="python /Library/Python/2.7/site-packages/pylint/lint.py"
-fi

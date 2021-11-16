@@ -1,4 +1,0 @@
-if [ -e "/Users" ]; then
-    export ARCHFLAGS="-arch x86_64"
-    export APACHE="/private/etc/apache2"
-fi
