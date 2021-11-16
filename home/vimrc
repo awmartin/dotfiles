@@ -57,7 +57,8 @@ autocmd GUIEnter * set visualbell t_vb=
 set foldlevel=99
 
 " Ignore whitespace in vimdiff (and fugitive's Gdiff)
-set diffopt+=iwhite
+" Temporarily disabled because VIM 8.1 doesn't support this option.
+"set diffopt+=iwhite
 
 " Files to ignore (ctrl-p, CommandT, etc.)
 set wildignore+=*.pyc,*.o,.build*,*.png
