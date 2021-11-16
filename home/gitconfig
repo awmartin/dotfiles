@@ -36,8 +36,12 @@
 
 [user]
     name = William Martin
-    email = awmartin@gmail.com
+    email = awmartin@anomalus.com
 [filter "lfs"]
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
     required = true
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[pull]
+	rebase = false
