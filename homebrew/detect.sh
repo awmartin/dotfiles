@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -e $HOME/.nvm/nvm.sh ]; then
+if [ -s "/opt/homebrew/bin/brew" ]; then
   echo true
 else
   echo false

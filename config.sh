@@ -3,15 +3,15 @@
 # Sets the config variables needed for any of the scripts.
 
 uname=$(uname)
-PLATFORM='unknown'
+platform='unknown'
 if [[ $uname = 'Darwin' ]]
 then
-  PLATFORM='darwin'
+  platform='darwin'
 elif [[ $uname = 'Linux' ]]
 then
-  PLATFORM='linux'
+  platform='linux'
 else
-  PLATFORM='unknown'
+  platform='unknown'
 fi
 
-export PLATFORM
+dotfiles_dir="$HOME/dotfiles"

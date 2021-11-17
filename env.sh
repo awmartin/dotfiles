@@ -1,64 +1,35 @@
 #!/bin/sh
 
-# env_config_dir="$HOME/.env"
-# if [ -d $env_config_dir ]; then
-#   config_files=`ls -d -- $env_config_dir/*`
+# Get all the config variables needed.
+source $HOME/dotfiles/config.sh
 
-#   for file in $config_files; do
-#     if [ -e "$file" ]; then
-#       source ${file}
-#     fi
-#   done
-# fi
+tools=( "$dotfiles_dir"/* )
+for tool_dir in $tools; do
+  if [ -d "$tool_dir" ]; then
+    detect_sh="$tool_dir/detect.sh"
 
+    tool_exists=false
+    if [ -s $detect_sh ]; then
+      tool_exists=$(source $detect_sh)
+    fi
 
-# PATH="/usr/local/bin:$PATH"
+    if $tool_exists; then
+      env_sh="$tool_dir/env.sh"
+      if [ -s $env_sh ]; then
+        source $env_sh
+      fi
 
-# path_low_priority = ( )
+      env_platform_sh="$tool_dir/env.$platform.sh"
+      if [ -s $env_platform_sh ]; then
+        source $env_platform_sh
+      fi
 
-# Lower priority PATH
-# for dir in $path_low_priority; do
-#     if [ -d "$dir" ]; then
-#         case "$PATH" in
-#             *:"$dir":*|*:"$dir"|"$dir":*|"$dir") ;;
-#             *) PATH="$PATH:$dir" ;;
-#         esac
-#     fi
-# done
+      tool_bin_dir="$tool_dir/bin"
+      if [ -d $tool_bin_dir ]; then
+        PATH="$tool_bin_dir:$PATH"
+      fi
+    fi
+  fi
+done
 
-
-# Local packages are a way to override the installs of /usr packages by adding the folders
-# to ~/local. It looks for all executables in ~/local/package/bin and ~/local/package/sbin.
-
-# if [ -d "$HOME/local" ]; then
-#   local_packages=`ls -d -- $HOME/local/*`
-
-#   for local_dir in $local_packages; do
-#     bin_dir="$local_dir/bin"
-#     if [ -d "$bin_dir" ]; then
-#       PATH="$bin_dir:$PATH"
-#     fi
-
-#     sbin_dir="$local_dir/sbin"
-#     if [ -d "$sbin_dir" ]; then
-#       PATH="$sbin_dir:$PATH"
-#     fi
-#   done
-# fi
-
-
-# High priority paths
-
-# if [ -d "$HOME/bin" ]; then
-#   path_high_priority=`ls -d $HOME/bin/*`
-
-#   for dir in $path_high_priority; do
-#     if [ -d "$dir" ]; then
-#       PATH="$dir:$PATH"
-#     fi
-#   done
-# fi
-
-# PATH="$HOME/bin:$PATH"
-
-# export PATH
+export PATH
