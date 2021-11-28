@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ -s /opt/homebrew/bin/gpg ] || [ -s /usr/local/bin/gpg ]
+if [ -s /opt/homebrew/bin/gpg ] || [ -s /usr/local/bin/gpg ] || [ -s /usr/bin/gpg ]
 then
-  true
+  echo true
 else
-  false
+  echo false
 fi
