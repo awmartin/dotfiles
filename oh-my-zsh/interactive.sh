@@ -12,8 +12,14 @@ unsetopt nomatch
 # Don't share history. It's a security risk.
 unsetopt share_history
 
+export ZSH="$HOME/util/oh-my-zsh"
+
 # Options for the interactive zsh experience.
-ZSH_THEME="gozilla"
-ZSH="$HOME/dotfiles/oh-my-zsh"
+ZSH_THEME="smt"
 HIST_STAMPS="yyyy-mm-dd"
 DISABLE_AUTO_UPDATE="true"
+
+# Load plugins.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh

@@ -34,9 +34,9 @@ The script looks at your current shell and backs up any relevant scripts first. 
 
 For `zsh`, the scripts in the base directory are loaded in the following order:
 
-- `.zshenv` - Loads `dotfiles/env.sh` (environment for all shells, then subsequently, `env.darwin.sh` or `env.linux.sh`)
-- `.zprofile` - Loads `dotfiles/login.sh` (for login shells)
-- `.zshrc` - Loads `dotfiles/interactive.sh` (for interactive shells)
+- `.zshenv` - Loads `dotfiles/env.sh` (environment for all shells, hence `env.sh`, then subsequently, `env.darwin.sh` or `env.linux.sh`)
+- `.zprofile` - Loads `dotfiles/login.sh` (for login shells, hence `login.sh`)
+- `.zshrc` - Loads `dotfiles/interactive.sh` (for interactive shells, hence `interactive.sh`)
 - `.zlogin` - Ignored for now.
 - `.zlogout` - Ignored for now.
 
