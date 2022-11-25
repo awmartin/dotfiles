@@ -4,8 +4,8 @@
 source $HOME/dotfiles/config.sh
 
 function run_login_scripts {
-  tools=( "$dotfiles_dir/*" )
-  for tool_dir in $tools; do
+  for tool_dir in $dotfiles_dir/*
+  do
     detect_sh="$tool_dir/detect.sh"
 
     tool_exists=false

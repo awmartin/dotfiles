@@ -3,8 +3,8 @@
 # Get all the config variables needed.
 source $HOME/dotfiles/config.sh
 
-tools=( "$dotfiles_dir/*" )
-for tool_dir in $tools; do
+for tool_dir in $dotfiles_dir/*
+do
   if [ -d "$tool_dir" ]; then
     detect_sh="$tool_dir/detect.sh"
 
